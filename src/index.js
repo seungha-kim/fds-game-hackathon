@@ -20,10 +20,17 @@ function drawBoard() {
   if (bingo(boardState)) {
     document.querySelector('.result').textContent = '빙고!'
     document.querySelector('.reset').classList.add('show')
-  } else {
-    document.querySelector('.result').textContent = ''
-    document.querySelector('.reset').classList.remove('show')
   }
+}
+
+function resetBoard() {
+  document.querySelectorAll('.row').forEach((rowEl, rowIndex) => {
+    rowEl.querySelectorAll('.col').forEach((colEl, colIndex) => {
+      colEl.classList.remove('checked')
+    })
+  })
+  document.querySelector('.result').textContent = ''
+  document.querySelector('.reset').classList.remove('show')
 }
 
 function bingo(arr) {
@@ -104,7 +111,7 @@ document.querySelector('.reset').addEventListener('click', e => {
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
   ]
-  drawBoard()
+  resetBoard()
 })
 
 drawBoard()
